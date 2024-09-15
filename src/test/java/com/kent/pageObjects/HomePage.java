@@ -7,11 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
-    WebDriver ldriver;
-    public HomePage(WebDriver rdriver)
+    public WebDriver driver;
+    public HomePage(WebDriver driver)
     {
-        ldriver = rdriver;
-        PageFactory.initElements(ldriver, this);
+        PageFactory.initElements(driver, this);
     }
     @FindBy(css = "#header-links li.header-account-container a")
     public static WebElement lnkAccount;
@@ -21,16 +20,20 @@ public class HomePage {
     public static WebElement password;
     @FindBy(css = ".action.login.primary")
     public static WebElement btnSignIn;
+
+    // Below component is the account dashboard page
+    @FindBy(xpath = "//div[@class='show-for-desktop']//span[@class='base']")
+    public static WebElement txtAccountDashboard;
     public void clickAccount(){
         lnkAccount.click();
     }
     public void setUserName(String uname){
         userName.sendKeys(uname);
     }
-    public void setPassword(String pass){
+    public static void setPassword(String pass){
         password.sendKeys(pass);
     }
-    public void signIn(){
+    public static void signIn(){
         btnSignIn.click();
     }
 }

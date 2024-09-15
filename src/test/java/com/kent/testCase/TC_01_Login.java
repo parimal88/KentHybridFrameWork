@@ -2,24 +2,32 @@ package com.kent.testCase;
 
 import com.kent.pageObjects.HomePage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
+import java.io.IOException;
+import java.time.Duration;
 
 public class TC_01_Login extends BaseClass{
     public HomePage hp;
     @Test
-    public void loginTest(){
-        driver.get("https://b2c.mcstaging3.kent.ca/");
+    public void loginTest() throws IOException {
         hp = new HomePage(driver);
         hp.clickAccount();
-        hp.setUserName("automationtestsc1@yopmail.com");
-        hp.setPassword("Test@123");
+        hp.setUserName(userName);
+        hp.setPassword(password);
         hp.signIn();
-        if (driver.getTitle().equalsIgnoreCase("My Account | Kent Building Supplies"))
+        waitT(hp.txtAccountDashboard);
+        String pageTitle= driver.getTitle();
+        if (pageTitle.equalsIgnoreCase("My Account | Kent Building Supplies"))
+        {
             Assert.assertTrue(true);
-        else
+        }
+        else {
             Assert.assertTrue(false);
+        }
     }
-
-
 }

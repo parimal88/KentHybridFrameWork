@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Kent" parallel="tests">
+	<listeners>
+		<listener class-name="com.kent.utilities.Reporting" />
+	</listeners>
+
+	<test name="Testing on chrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.kent.testCase.TC_01_Login" />
+		</classes>
+	</test>
+
+	<!--<test name="Testing on firefox">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.kent.testCase.TC_01_Login" />
+		</classes>
+	</test>  -->
+
+</suite>
